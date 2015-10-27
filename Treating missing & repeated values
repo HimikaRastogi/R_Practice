@@ -1,0 +1,5 @@
+# Finding missing values
+is.na()
+
+# Finding duplicate values
+duplicated()
