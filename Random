@@ -1,0 +1,21 @@
+countries <-c("Canada", "United States", "France", "Belgium", "India", "China", "United Kingdom", "Russia")
+continents <-c("North-America", "North-America", "Europe", "Europe", "Asia", "Asia", "Europe", "Asia")
+gdp <- c(44843, 54596, 44538, 47787, 1808, 8154, 45653, 8184)
+hdi <- c(0.902, 0.914, 0.884, 0.881, 0.586, 0.719, 0.892, 0.778)
+president <- c(F, T, T, F, T, T, F, T)
+continents_factor <- factor(continents)
+countries_df <- data.frame(name = countries, continent = continents_factor, gdp = gdp, HDI = hdi, has_president = president, stringsAsFactors=FALSE)
+rm(countries, continents, gdp, hdi, president, continents_factor)
+population<-c(35749600, 321163157, 66616416, 11239755, 1210193422, 1357380000, 64511000, 143975923)
+brazil<-data.frame("Brazil", "South-America", TRUE, 202768562)
+
+# Remove economic variables and add population.
+countries_df_dem <- countries_df[ , c(1, 2, 5)]
+countries_df_dem$population <- population
+
+# Add brazil
+names(brazil) <- c("name", "continent", "has_president", "population")
+countries_df2 <- rbind(countries_df_dem,brazil)
+
+# Sort by population
+countries_df2[order(countries_df2$population,decreasing=TRUE), ]
